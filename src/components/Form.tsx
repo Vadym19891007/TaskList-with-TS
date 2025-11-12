@@ -26,7 +26,9 @@ export default function Form() {
       };
       setTasks([...tasks, task]);
     }
-    setTitle(""), setDeadline(""), setPriority("Low");
+    setTitle("");
+    setDeadline("");
+    setPriority("Low");
   }
   return (
     <form

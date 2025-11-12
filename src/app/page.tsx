@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 import TaskList from "@/components/TaskList";
 import Tasks from "@/components/Tasks";
@@ -27,6 +27,26 @@ export const TaskContext = createContext<ITaskContextType | null>(null);
 
 export default function Home() {
   const [tasks, setTasks] = useState<ITask[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("tasks");
+    if (stored) {
+      const storedTasks = JSON.parse(stored).map((task: ITask) => ({
+        ...task,
+        deadline: new Date(task.deadline),
+      }));
+      Promise.resolve()
+        .then(() => setTasks(storedTasks))
+        .then(() => setIsMounted(true));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks, isMounted]);
 
   const deleteTask = (id: number): void => {
     setTasks(tasks.filter((task) => task.id !== id));
