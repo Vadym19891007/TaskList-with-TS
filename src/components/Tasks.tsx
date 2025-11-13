@@ -10,8 +10,9 @@ export default function Tasks() {
   const [isOpen, setIsOpen] = useState(true);
   const taskContext = useContext(TaskContext);
   if (!taskContext) return null;
-  const { tasks, setTasks } = taskContext;
+  const { tasks, toggleSortOrder, sortTask } = taskContext;
 
+  const sorterdTasks = sortTask(tasks);
   return (
     <div
       className="m-auto w-[300px] h-auto bg-white border-none
@@ -30,14 +31,21 @@ export default function Tasks() {
       </span>
 
       <div className="mt-5">
-        <Button styles="w-[100px]  ">By Date</Button>
-        <Button styles="w-[100px] ml-2">By Priority</Button>
+        <Button onClick={() => toggleSortOrder("date")} styles="w-[100px]  ">
+          By Date
+        </Button>
+        <Button
+          onClick={() => toggleSortOrder("priority")}
+          styles="w-[100px] ml-2"
+        >
+          By Priority
+        </Button>
       </div>
       <hr className="my-5 border-gray-300" />
       {isOpen && (
         <div className="mt-2">
-          {tasks &&
-            tasks.map(
+          {sorterdTasks &&
+            sorterdTasks.map(
               (task: ITask) =>
                 !task.completed && <Task key={task.id} task={task} />
             )}

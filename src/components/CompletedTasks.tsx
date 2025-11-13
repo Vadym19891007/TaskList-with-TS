@@ -7,9 +7,11 @@ export default function CompletedTasks() {
 
   const taskContext = useContext(TaskContext);
   if (!taskContext) return null;
-  const { tasks } = taskContext;
+  const { tasks, sortTask } = taskContext;
 
-  const completedTasks = tasks.filter((task) => task.completed === true);
+  const completedTasks = sortTask(
+    tasks.filter((task) => task.completed === true)
+  );
 
   return (
     <div
