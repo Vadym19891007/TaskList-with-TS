@@ -10,7 +10,7 @@ export default function Tasks() {
   const [isOpen, setIsOpen] = useState(true);
   const taskContext = useContext(TaskContext);
   if (!taskContext) return null;
-  const { tasks, toggleSortOrder, sortTask } = taskContext;
+  const { tasks, toggleSortOrder, sortTask, sortOrder, sortType } = taskContext;
 
   const sorterdTasks = sortTask(tasks);
   return (
@@ -31,14 +31,23 @@ export default function Tasks() {
       </span>
 
       <div className="mt-5">
-        <Button onClick={() => toggleSortOrder("date")} styles="w-[100px]  ">
+        <Button
+          onClick={() => toggleSortOrder("date")}
+          styles={`w-[100px] ${sortType === "date" ? "bg-blue-700" : ""}`}
+        >
           By Date
+          {sortType === "date" &&
+            ` ${sortOrder === "asc" ? "\u2191" : "\u2193"}`}
         </Button>
         <Button
           onClick={() => toggleSortOrder("priority")}
-          styles="w-[100px] ml-2"
+          styles={`w-[100px] ml-2 ${
+            sortType === "priority" ? "bg-blue-700" : ""
+          }`}
         >
           By Priority
+          {sortType === "priority" &&
+            ` ${sortOrder === "asc" ? "\u2191" : "\u2193"}`}
         </Button>
       </div>
       <hr className="my-5 border-gray-300" />

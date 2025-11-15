@@ -29,6 +29,8 @@ interface ITaskContextType {
   completedTask: VoidFunction;
   deleteTask: VoidFunction;
   sortTask: (tasks: ITask[]) => ITask[];
+  sortOrder: string;
+  sortType: string;
 }
 
 export const TaskContext = createContext<ITaskContextType | null>(null);
@@ -50,6 +52,8 @@ export default function Home() {
       Promise.resolve()
         .then(() => setTasks(storedTasks))
         .then(() => setIsMounted(true));
+    } else {
+      () => setIsMounted(true);
     }
   }, []);
 
@@ -104,6 +108,8 @@ export default function Home() {
         deleteTask,
         toggleSortOrder,
         sortTask,
+        sortOrder,
+        sortType,
       }}
     >
       <div className="bg-gray-100 min-h-screen p-4 ">

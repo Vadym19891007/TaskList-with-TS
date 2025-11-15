@@ -43,6 +43,7 @@ export default function Form() {
         value={title}
       />
       <select
+        value={priority}
         className="p-2 border border-gray-300 rounded-xl"
         onChange={(e) => setPriority(e.target.value)}
       >
