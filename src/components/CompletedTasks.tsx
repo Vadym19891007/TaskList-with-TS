@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, Activity } from "react";
 import Task from "./Task";
 import { TaskContext } from "@/app/page";
 
@@ -31,8 +31,13 @@ export default function CompletedTasks() {
       </span>
 
       <hr className="my-5 border-gray-300" />
-      {isOpen &&
-        completedTasks.map((task) => <Task key={task.id} task={task} />)}
+      <Activity mode={isOpen ? "visible" : "hidden"}>
+        {completedTasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
+      </Activity>
+      {/* {isOpen &&
+        completedTasks.map((task) => <Task key={task.id} task={task} />)} */}
     </div>
   );
 }

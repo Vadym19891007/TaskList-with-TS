@@ -1,6 +1,6 @@
 "use client";
 import { ITask, TaskContext } from "@/app/page";
-import { useContext } from "react";
+import { useContext, Activity } from "react";
 
 import { useState } from "react";
 import Button from "./Button";
@@ -51,7 +51,7 @@ export default function Tasks() {
         </Button>
       </div>
       <hr className="my-5 border-gray-300" />
-      {isOpen && (
+      <Activity mode={isOpen ? "visible" : "hidden"}>
         <div className="mt-2">
           {sorterdTasks &&
             sorterdTasks.map(
@@ -59,7 +59,16 @@ export default function Tasks() {
                 !task.completed && <Task key={task.id} task={task} />
             )}
         </div>
-      )}
+      </Activity>
+      {/* {isOpen && (
+        <div className="mt-2">
+          {sorterdTasks &&
+            sorterdTasks.map(
+              (task: ITask) =>
+                !task.completed && <Task key={task.id} task={task} />
+            )}
+        </div>
+      )} */}
     </div>
   );
 }

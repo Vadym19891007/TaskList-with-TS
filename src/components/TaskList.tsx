@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ITask, TaskContext } from "@/app/page";
+import { useState, Activity } from "react";
+import { ITask } from "@/app/page";
 
 import Form from "./Form";
 
@@ -27,7 +27,9 @@ export default function TaskList() {
       >
         +
       </span>
-      {isOpen && <Form />}
+      <Activity mode={isOpen ? "visible" : "hidden"}>
+        <Form />
+      </Activity>
     </div>
   );
 }
