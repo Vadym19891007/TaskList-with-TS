@@ -32,19 +32,21 @@ export default function Form() {
   }
   return (
     <form
-      className="flex flex-col w-auto h-auto m-10  gap-4"
+      className="flex flex-col w-auto h-auto m-10  gap-4  "
       onSubmit={(e) => addTask(e)}
     >
       <input
-        className="p-2 border border-gray-300  rounded-xl"
+        required
+        className="p-2 border border-gray-300  rounded-xl min-w-[188px]"
         type="text"
         placeholder="Enter a task"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
       <select
+        required
         value={priority}
-        className="p-2 border border-gray-300 rounded-xl"
+        className="p-2 border border-gray-300 rounded-xl  min-w-[188px]"
         onChange={(e) => setPriority(e.target.value as Priority)}
       >
         <option value="" disabled>
@@ -55,7 +57,8 @@ export default function Form() {
         <option value="High">High</option>
       </select>
       <input
-        className="p-2 border border-gray-300 rounded-xl"
+        required
+        className="p-2 border border-gray-300 rounded-xl  min-w-[188px]"
         type="date"
         onChange={(e) => setDeadline(e.target.value)}
         value={deadline}

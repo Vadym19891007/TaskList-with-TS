@@ -27,10 +27,10 @@ export default function Task({ task }: ITaskProps) {
   const { completedTask, deleteTask } = propsContext;
   return (
     <div
-      className={`${taskBg()} min-h-[80px] w-auto rounded-md flex justify-between items-center p-4 mt-2`}
+      className={`${taskBg()} h-auto  w-auto rounded-md flex justify-between gap-1 items-center p-4 mt-2`}
     >
-      <div>
-        <h2>
+      <div className="max-w-[60%]">
+        <h2 className="wrap-break-word">
           {task.title} - <b>{task.priority}</b>
         </h2>
         <p>Due: {task.deadline.toLocaleDateString()}</p>
