@@ -3,11 +3,11 @@
 import { useState, useContext } from "react";
 
 import Button from "./Button";
-import { TaskContext } from "@/app/page";
+import { TaskContext, Priority } from "@/app/page";
 
 export default function Form() {
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState("Low");
+  const [priority, setPriority] = useState<Priority>("Low");
   const [deadline, setDeadline] = useState("");
 
   const taskContext = useContext(TaskContext);
@@ -45,7 +45,7 @@ export default function Form() {
       <select
         value={priority}
         className="p-2 border border-gray-300 rounded-xl"
-        onChange={(e) => setPriority(e.target.value)}
+        onChange={(e) => setPriority(e.target.value as Priority)}
       >
         <option value="" disabled>
           Select Priority

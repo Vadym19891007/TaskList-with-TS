@@ -6,9 +6,11 @@ import TaskList from "@/components/TaskList";
 import Tasks from "@/components/Tasks";
 import CompletedTasks from "@/components/CompletedTasks";
 
+export type Priority = "High" | "Medium" | "Low";
+
 export interface ITask {
   title: string;
-  priority: "High" | "Medium" | "Low";
+  priority: Priority;
   deadline: Date;
   completed: boolean;
   id: number;
